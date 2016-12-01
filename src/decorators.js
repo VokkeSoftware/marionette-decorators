@@ -16,11 +16,11 @@ export function appRoute(eventName) {
      * Return a decorator function
      */
     return function(target, name, descriptor) {
-        if(!target.prototype.appRoutes) {
-            target.prototype.appRoutes = {};
+        if(!target.appRoutes) {
+            target.appRoutes = {};
         }
 
-        if(_.isFunction(target.prototype.appRoutes)) {
+        if(_.isFunction(target.appRoutes)) {
             throw new Error("The on decorator is not compatible with an appRoutes method");
         }
 
@@ -28,7 +28,7 @@ export function appRoute(eventName) {
             throw new Error("The on decorator requires an appRoute argument");
         }
 
-        target.prototype.appRoutes[eventName] = name;
+        target.appRoutes[eventName] = name;
         return descriptor;
     };
 }
