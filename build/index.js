@@ -15,16 +15,16 @@ export function appRoute(eventName) {
     /**
      * Return a decorator function
      */
-    return function(target, name, descriptor) {
-        if(!target.prototype.appRoutes) {
+    return function (target, name, descriptor) {
+        if (!target.prototype.appRoutes) {
             target.prototype.appRoutes = {};
         }
 
-        if(_.isFunction(target.prototype.appRoutes)) {
+        if (_.isFunction(target.prototype.appRoutes)) {
             throw new Error("The on decorator is not compatible with an appRoutes method");
         }
 
-        if(!eventName) {
+        if (!eventName) {
             throw new Error("The on decorator requires an appRoute argument");
         }
 
@@ -113,16 +113,16 @@ export function on(eventName) {
     /**
      * Return a decorator function
      */
-    return function(target, name, descriptor) {
-        if(!target.prototype.events) {
+    return function (target, name, descriptor) {
+        if (!target.prototype.events) {
             target.prototype.events = {};
         }
 
-        if(_.isFunction(target.prototype.events)) {
+        if (_.isFunction(target.prototype.events)) {
             throw new Error("The on decorator is not compatible with an events method");
         }
 
-        if(!eventName) {
+        if (!eventName) {
             throw new Error("The on decorator requires an eventName argument");
         }
 
@@ -155,7 +155,7 @@ export function tagName(value) {
  * @returns {Function} The template decorator
  */
 export function template(value, model) {
-    if(undefined === model) {
+    if (undefined === model) {
         model = {};
     }
 

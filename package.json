@@ -1,8 +1,8 @@
 {
   "name": "marionette-decorators",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Marionette decorators",
-  "main": "src/decorators.js",
+  "main": "build/index.js",
   "keywords": [
     "Marionette",
     "ES6",
@@ -13,5 +13,13 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/VokkeSoftware/marionette-decorators.git"
+  },
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-plugin-syntax-decorators": "^6.13.0",
+    "babel-plugin-transform-decorators": "^6.13.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-preset-es2016": "^6.16.0"
   }
 }
