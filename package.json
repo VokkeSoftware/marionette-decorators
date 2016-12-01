@@ -1,0 +1,17 @@
+{
+  "name": "marionette-decorators",
+  "version": "1.0.0",
+  "description": "Marionette decorators",
+  "main": "src/decorators.js",
+  "keywords": [
+    "Marionette",
+    "ES6",
+    "Decorators"
+  ],
+  "author": "Jake Jarrett <jake@vokke.com.au>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VokkeSoftware/marionette-decorators.git"
+  }
+}
