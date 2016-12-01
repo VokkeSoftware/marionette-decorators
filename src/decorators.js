@@ -16,19 +16,17 @@ export function appRoute(eventName) {
      * Return a decorator function
      */
     return function decorator(target, name, descriptor) {
-        if(!"appRoutes" in target.prototype) {
-            target.prototype.appRoutes = {};
-        }
+        target.appRoutes = target.appRoutes || {};
 
-        if(_.isFunction(target.prototype.appRoutes)) {
+        if (_.isFunction(target.appRoutes)) {
             throw new Error("The on decorator is not compatible with an appRoutes method");
         }
 
-        if(!eventName) {
+        if (!eventName) {
             throw new Error("The on decorator requires an appRoute argument");
         }
 
-        target.prototype.appRoutes[eventName] = name;
+        target.appRoutes[eventName] = name;
         return descriptor;
     };
 }
@@ -47,7 +45,7 @@ export function attribute(attribute, value) {
      * Return a decorator function
      */
     return function decorator(target) {
-        target[attribute] = value;
+        target.prototype[attribute] = value;
     };
 }
 
@@ -65,7 +63,7 @@ export function attributes(attributes) {
      */
     return function decorator(target) {
         for (let attribute in attributes) {
-            target[attribute] = attributes[attribute];
+            target.prototype[attribute] = attributes[attribute];
         }
     };
 }
@@ -82,7 +80,7 @@ export function className(value) {
      * Return a decorator function
      */
     return function decorator(target) {
-        target.prototype.className = value;
+        target.className = value;
     };
 }
 
@@ -113,20 +111,18 @@ export function on(eventName) {
     /**
      * Return a decorator function
      */
-    return function(target, name, descriptor) {
-        if(!target.prototype.events) {
-            target.prototype.events = {};
-        }
+    return function (target, name, descriptor) {
+        target.events = target.events || {};
 
-        if(_.isFunction(target.prototype.events)) {
+        if (_.isFunction(target.events)) {
             throw new Error("The on decorator is not compatible with an events method");
         }
 
-        if(!eventName) {
+        if (!eventName) {
             throw new Error("The on decorator requires an eventName argument");
         }
 
-        target.prototype.events[eventName] = name;
+        target.events[eventName] = name;
         return descriptor;
     };
 }
@@ -155,7 +151,7 @@ export function tagName(value) {
  * @returns {Function} The template decorator
  */
 export function template(value, model) {
-    if(undefined === model) {
+    if (undefined === model) {
         model = {};
     }
 
