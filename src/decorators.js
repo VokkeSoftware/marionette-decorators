@@ -47,7 +47,7 @@ export function attribute(attribute, value) {
      * Return a decorator function
      */
     return function decorator(target) {
-        target.prototype[attribute] = value;
+        target[attribute] = value;
     };
 }
 
@@ -65,7 +65,7 @@ export function attributes(attributes) {
      */
     return function decorator(target) {
         for (let attribute in attributes) {
-            target.prototype[attribute] = attributes[attribute];
+            target[attribute] = attributes[attribute];
         }
     };
 }
@@ -82,7 +82,7 @@ export function className(value) {
      * Return a decorator function
      */
     return function decorator(target) {
-        target.prototype.className = value;
+        target.className = value;
     };
 }
 
@@ -97,7 +97,7 @@ export function controller(value) {
      * Return a decorator function
      */
     return function decorator(target) {
-        target.prototype.controller = value;
+        target.controller = value;
     };
 }
 
@@ -114,11 +114,11 @@ export function on(eventName) {
      * Return a decorator function
      */
     return function(target, name, descriptor) {
-        if(!target.prototype.events) {
-            target.prototype.events = {};
+        if(!target.events) {
+            target.events = {};
         }
 
-        if(_.isFunction(target.prototype.events)) {
+        if(_.isFunction(target.events)) {
             throw new Error("The on decorator is not compatible with an events method");
         }
 
@@ -126,7 +126,7 @@ export function on(eventName) {
             throw new Error("The on decorator requires an eventName argument");
         }
 
-        target.prototype.events[eventName] = name;
+        target.events[eventName] = name;
         return descriptor;
     };
 }
@@ -143,7 +143,7 @@ export function tagName(value) {
      * Return a decorator function
      */
     return function decorator(target) {
-        target.prototype.tagName = value;
+        target.tagName = value;
     };
 }
 
@@ -163,7 +163,7 @@ export function template(value, model) {
      * Return a decorator function
      */
     return function decorator(target) {
-        target.prototype.template = _.template(value, model);
+        target.template = _.template(value, model);
     };
 }
 
@@ -179,7 +179,7 @@ export function ui(...args) {
      * Return a decorator function
      */
     return function decorator(target) {
-        let ui = target.prototype.ui || {};
+        let ui = target.ui || {};
         let [key, value] = args;
 
         if (_.isObject(key)) {
@@ -190,6 +190,6 @@ export function ui(...args) {
             throw new Error("The ui decorator takes either a single object as an argument or a key and value string");
         }
 
-        target.prototype.ui = ui;
+        target.ui = ui;
     };
 }
