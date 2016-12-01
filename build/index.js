@@ -15,8 +15,8 @@ export function appRoute(eventName) {
     /**
      * Return a decorator function
      */
-    return function (target, name, descriptor) {
-        if (!target.prototype.appRoutes) {
+    return function decorator(target, name, descriptor) {
+        if (!"appRoutes" in target.prototype) {
             target.prototype.appRoutes = {};
         }
 

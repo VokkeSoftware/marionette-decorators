@@ -1,6 +1,6 @@
 {
   "name": "marionette-decorators",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Marionette decorators",
   "main": "build/index.js",
   "keywords": [
