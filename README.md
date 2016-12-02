@@ -1,4 +1,4 @@
-# Marionette Decorators
+# Marionette Decorators [![npm version](https://badge.fury.io/js/marionette-decorators.svg)](https://badge.fury.io/js/marionette-decorators)
 
 ## Requirements
 You will require babel's [syntax-decorators](https://babeljs.io/docs/plugins/syntax-decorators/) babel to use decorators
