@@ -1,5 +1,18 @@
 # Marionette Decorators [![npm version](https://badge.fury.io/js/marionette-decorators.svg)](https://badge.fury.io/js/marionette-decorators)
 
+## Table of contents
+- [Requirements](#requirements)
+- [Examples](#examples)
+    - [appRoute](#approute)
+    - [attribute](#attribute)
+    - [attributes](#attributes)
+    - [className](#classname)
+    - [controller](#controller)
+    - [tagName](#tagname)
+    - [on](#on)
+    - [ui](#ui)
+
+
 ## Requirements
 You will require babel's [syntax-decorators](https://babeljs.io/docs/plugins/syntax-decorators/) babel to use decorators
 
