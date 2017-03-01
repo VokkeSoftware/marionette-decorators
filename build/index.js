@@ -62,7 +62,7 @@ export function attributes(attributes) {
      * Return a decorator function
      */
     return function decorator(target) {
-        for (let attribute in attributes) {
+        for (var attribute in attributes) {
             target.prototype[attribute] = attributes[attribute];
         }
     };
@@ -175,8 +175,8 @@ export function ui(...args) {
      * Return a decorator function
      */
     return function decorator(target) {
-        let ui = target.prototype.ui || {};
-        let [key, value] = args;
+        var ui = target.prototype.ui || {};
+        var [key, value] = args;
 
         if (_.isObject(key)) {
             _.extend(ui, args[0]);
