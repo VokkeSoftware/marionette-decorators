@@ -162,30 +162,3 @@ export function template(value, model) {
         target.prototype.template = _.template(value, model);
     };
 }
-
-/**
- * Based on the ui decorator from Backbone-decorators
- *
- * @param args {Array} Array of arguments.
- * @returns {Function} The ui decorator
- */
-export function ui(...args) {
-
-    /**
-     * Return a decorator function
-     */
-    return function decorator(target) {
-        var ui = target.prototype.ui || {};
-        var [key, value] = args;
-
-        if (_.isObject(key)) {
-            _.extend(ui, args[0]);
-        } else if (_.isString(key) && _.isString(value)) {
-            ui[key] = value;
-        } else {
-            throw new Error("The ui decorator takes either a single object as an argument or a key and value string");
-        }
-
-        target.prototype.ui = ui;
-    };
-}
