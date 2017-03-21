@@ -128,6 +128,35 @@ export function on(eventName) {
 }
 
 /**
+ * Radio request decorator
+ *
+ * This provides a much more declarative way to assign event listeners via decorators.
+ *
+ * @param request {String} The radio event you're listening to (EG/ "show:modal")
+ * @returns {Function} The "radioRequest" decorator (@radioRequest)
+ * @requires {Backbone.Radio} Requires backbone radio (MN 3+)
+ */
+export function radioRequest(request) {
+    /**
+     * Return a decorator function
+     */
+    return function (target, name, descriptor) {
+        target.radioRequests = target.radioRequests || {};
+
+        if (_.isFunction(target.radioRequests)) {
+            throw new Error("The radioRequest decorator is not compatible with an events method");
+        }
+
+        if (!request) {
+            throw new Error("The radioRequest decorator requires a request argument (String value)");
+        }
+
+        target.radioRequests[request] = name;
+        return descriptor;
+    };
+}
+
+/**
  * Tag name decorator
  *
  * @param value {String} The tag name of the element. (div/li etc)
