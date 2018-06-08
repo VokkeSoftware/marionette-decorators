@@ -128,6 +128,37 @@ export function on(eventName) {
 }
 
 /**
+ * Region decorator
+ * 
+ * This provides a simpler way of setting a region.
+ * 
+ * @param {string|Getter} regionName - Must be a getter, variable declarations occur *AFTER* constructor/initialize whereas this does not.
+ */
+export function region(regionName) {
+    /**
+     * Return a decorator function
+     */
+    return function (target, name, descriptor) {
+        target.regions = target.regions || {};
+
+        if (_.isFunction(target.regions)) {
+            throw new Error("The region decorator is not compatible with a regions method");
+        }
+
+        if (!regionName) {
+            throw new Error("The on decorator requires an regionName argument");
+        }
+
+        if (target[name] == null) {
+            throw new Error("You either haven't set the region value, or set it to a value that is not visible before the constructor has run (Try using a getter!)")
+        }
+
+        target.regions[regionName] = target[name];
+        return descriptor;
+    };
+}
+
+/**
  * Radio request decorator
  *
  * This provides a much more declarative way to assign event listeners via decorators.

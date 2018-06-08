@@ -128,6 +128,66 @@ export function on(eventName) {
 }
 
 /**
+ * Region decorator
+ * 
+ * This provides a simpler way of setting a region.
+ * 
+ * @param {string|Getter} regionName - Must be a getter, variable declarations occur *AFTER* constructor/initialize whereas this does not.
+ */
+export function region(regionName) {
+    /**
+     * Return a decorator function
+     */
+    return function (target, name, descriptor) {
+        target.regions = target.regions || {};
+
+        if (_.isFunction(target.regions)) {
+            throw new Error("The region decorator is not compatible with a regions method");
+        }
+
+        if (!regionName) {
+            throw new Error("The on decorator requires an regionName argument");
+        }
+
+        if (target[name] == null) {
+            throw new Error("You either haven't set the region value, or set it to a value that is not visible before the constructor has run (Try using a getter!)");
+        }
+
+        target.regions[regionName] = target[name];
+        return descriptor;
+    };
+}
+
+/**
+ * Radio request decorator
+ *
+ * This provides a much more declarative way to assign event listeners via decorators.
+ *
+ * @param request {String} The radio event you're listening to (EG/ "show:modal")
+ * @returns {Function} The "radioRequest" decorator (@radioRequest)
+ * @requires {Backbone.Radio} Requires backbone radio (MN 3+)
+ */
+export function radioRequest(request) {
+    /**
+     * Return a decorator function
+     */
+    return function (target, name, descriptor) {
+        target.radioRequests = target.radioRequests || {};
+
+        if (_.isFunction(target.radioRequests)) {
+            throw new Error("The radioRequest decorator is not compatible with an events method");
+        }
+
+        if (!request) {
+            throw new Error("The radioRequest decorator requires a request argument (String value)");
+        }
+
+        target.radioRequests[request] = name;
+        return descriptor;
+    };
+}
+
+/**
  * Tag name decorator
  *
  * @param value {String} The tag name of the element. (div/li etc)
